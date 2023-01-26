@@ -3,7 +3,10 @@
 {% block title %}List of movies{% endblock %}
 
 {% block content %}
-    <h1>List of movies</h1>
-    <ul>
-        {% for movie in movies
-    </ul>
+  <h1>List of movies</h1>
+  <ul>
+    {% for movie in movies %}
+      <li>{{ movie.title }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
