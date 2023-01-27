@@ -1,0 +1,10 @@
+# created by virtualenv automatically
+
+.idea/
+Lib/
+Scripts/
+db.sqlite3
+pyvenv.cfg
+hollymovies/__pycache__/
+viewer/__pycache__/
+viewer/migrations/__pycache__/
