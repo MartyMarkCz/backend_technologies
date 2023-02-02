@@ -1,11 +1,10 @@
-from django.db.models import * #Model, CharField, ForeignKey, IntegerField, \
+from django.db.models import *  # Model, CharField, ForeignKey, IntegerField, \
 #    DateField, TextField, DateTimeField, DO_NOTHING, CASCADE, SET_NULL, PositiveSmallIntegerField
 
 from django.contrib.auth.models import User
 
+
 # Create your models here
-
-
 class Genre(Model):
     name = CharField(max_length=16, null=False, unique=True)
 
@@ -84,7 +83,7 @@ class Rating(Model):
         ordering = ['movie', 'created']
 
     def __str__(self):
-        return self.movie.title_orig + " " + self.user.name + " " + self.rating
+        return self.movie.title_orig + " " + self.user.username + " " + str(self.rating)
 
 
 class Award(Model):
@@ -110,7 +109,7 @@ class Staff(Model):
     date_of_birth = DateField(null=True, blank=True)
     death_date = DateField(null=True, blank=True)
     biography = TextField(null=True, blank=True)
-    awards = ManyToManyField(Award, blank=True)
+    awards = ManyToManyField(Award, blank=True, related_name='staff')
     directing = ManyToManyField(Movie, related_name='directing_movie', blank=True)
     acting = ManyToManyField(Movie, related_name='acting_in_movie', blank=True)
     created = DateTimeField(auto_now_add=True)
