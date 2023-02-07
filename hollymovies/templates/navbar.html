@@ -4,6 +4,18 @@
   <ul>
     <li><a href="{% url 'home' %}">HOME</a></li>
     <li><a href="{% url 'movies' %}">Movies</a></li>
+    <li><a href="{% url 'filter_movies' %}">Filter movies</a></li>
+    <li><a href="{% url 'last_visited_movies' %}">Last visited movies</a></li>
+    <li><a href="{% url 'new_movies' %}">New movies</a></li>
+    <li><a href="{% url 'movies_by_rating' %}">Top rated movies</a></li>
+    <li><a href="{% url 'random_movie' %}">Random movie</a></li>
+    {% comment %}{% if request.user.is_authenticated %}{% endcomment %}
+    {% if perms.viewer.add_movie %}
+      <li><a href="{% url 'new_movie' %}">New movie</a></li>
+    {% endif %}
+    {% if perms.viewer.add_staff %}                          <!-- Josef Krčmář -->
+      <li><a href="{% url 'new_staff' %}">New staff</a></li> <!-- Josef Krčmář -->
+    {% endif %}                                              <!-- Josef Krčmář -->
     <li><a href="">News</a></li>
     <li><a href="{% url 'actors' %}">Actors</a></li>
     <li><a href="">Awards</a></li>

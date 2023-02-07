@@ -8,6 +8,9 @@ from django.contrib.auth.models import User
 class Genre(Model):
     name = CharField(max_length=16, null=False, unique=True)
 
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
 
@@ -64,6 +67,7 @@ class Movie(Model):
     link = CharField(max_length=256, null=True, blank=True)
     created = DateTimeField(auto_now_add=True)
     updated = DateTimeField(auto_now=True)
+    last_visit = DateTimeField(null=True)
 
     class Meta:
         ordering = ['title_orig']
@@ -73,7 +77,7 @@ class Movie(Model):
 
 
 class Rating(Model):
-    movie = ForeignKey(Movie, null=False, on_delete=CASCADE)
+    movie = ForeignKey(Movie, null=False, on_delete=CASCADE, related_name='movie_rating')
     user = ForeignKey(User, null=True, on_delete=SET_NULL)
     rating = PositiveSmallIntegerField(null=False)
     created = DateTimeField(auto_now_add=True)
@@ -127,3 +131,6 @@ class Staff(Model):
         if self.artist_name:
             result += " " + self.artist_name
         return result
+
+    def number_of_awards(self):
+        return 25  # TODO opravit

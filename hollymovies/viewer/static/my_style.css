@@ -132,5 +132,10 @@ div.link a {
 
 .last-item {
     float: right;
-    margin-right: 20px;
+    margin-right: 10px;
+}
+
+.second-last-item {
+    float: right;
+    /*margin-right: 5px;*/
 }
